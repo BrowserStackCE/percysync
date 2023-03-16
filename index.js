@@ -6,6 +6,7 @@ var waitUntil = require('wait-until');
 
 program
     .option('-t, --timeout <number>', 'percysync timeout (seconds)', 20)
+    .option('-i, --idle <number>', 'minimum amount of time to wait before stating to poll the Percy API (seconds)', 10)
 
 program.parse();
 
@@ -33,10 +34,14 @@ command.on(
     {
         var build_status
         console.log("[percysync] Waiting for Percy to finish the visual report");
+        var percyRenderingStartTime = Date.now()
         waitUntil()
             .interval(2000)
             .times(options['timeout']*1000/2000)
             .condition(function() {
+                if(Date.now() - percyRenderingStartTime < options['idle'] * 1000 ){
+                    return false
+                }
                 var res = request('GET', 'https://percy.io/api/v1/builds/'+ build_id, {
                     headers: { 'Authorization': "Token "+ process.env["PERCY_TOKEN"]},
                 });

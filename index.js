@@ -63,16 +63,16 @@ command.on(
                         return Date.parse(aBuild['attributes']['finished-at']) - Date.parse(aBuild['attributes']['created-at'])
                     });
                 options['idle'] = median(build_durations)*0.9 / 1000.
-                options['timeout'] = options['idle'] + 60.
+                options['timeout'] = options['timeout']?options['timeout']:(options['idle'] + 60)
                 console.log("[percysync] We expect the build to take around " + options['idle'] + " seconds");
             }
         }
         options['idle'] = options['idle']?options['idle']:30
-        options['timeout'] = options['timeout']?options['idle']:120
+        options['timeout'] = options['timeout']?options['timeout']:120
         var percyRenderingStartTime = Date.now()
         waitUntil()
             .interval(2000)
-            .times(options['timeout']*1000/2000)
+            .times(Math.floor(options['timeout']*1000/2000))
             .condition(function() {
                 if(Date.now() - percyRenderingStartTime < options['idle'] * 1000 ){
                     return false

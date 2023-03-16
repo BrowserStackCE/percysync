@@ -1,0 +1,20 @@
+{
+  "name": "percysync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "percysync": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@percy/cli": "^1.21.0",
+    "commander": "^10.0.0",
+    "sync-request": "^6.1.0",
+    "wait-until": "^0.0.2"
+  }
+}

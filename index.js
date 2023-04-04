@@ -43,16 +43,17 @@ command.on(
   'close', (code) => {
     if(build_id)
     {
+        var token = process.env['PERCY_READ_TOKEN']?process.env['PERCY_READ_TOKEN']:process.env['PERCY_TOKEN']
         var build_status
         console.log("[percysync] Waiting for Percy to finish the visual report");
         if(!options['idle'])
         {
             var res = request('GET', 'https://percy.io/api/v1/projects?project_slug='+ project_slug, {
-                headers: { 'Authorization': "Token "+ process.env["PERCY_TOKEN"]},
+                headers: { 'Authorization': "Token "+ token},
             });
             var project_id = JSON.parse(res.getBody('utf8'))["data"]["id"]
             var res = request('GET', 'https://percy.io/api/v1/builds?project_id='+ project_id+ "&page\[limit\]=50", {
-                headers: { 'Authorization': "Token "+ process.env["PERCY_TOKEN"]},
+                headers: { 'Authorization': "Token "+ token},
             });
         
             var finished_builds = JSON.parse(res.getBody('utf8'))["data"].filter(aBuild => aBuild['attributes']['finished-at'])
@@ -76,7 +77,7 @@ command.on(
         var percywaitOptions = ["percy", "build:wait", "--fail-on-changes", "--pass-if-approved", "--build", build_id, "--timeout", options['timeout']*1000];
         if(options['verbose'])
             percywaitOptions.push("--verbose");
-        const percyWait = spawn("npx", percywaitOptions,  {stdio: "inherit"});
+        const percyWait = spawn("npx", percywaitOptions,  { env: { ...process.env, PERCY_TOKEN: token}, stdio: "inherit"});
         percyWait.on('close', (buildCode) => {
             process.exit(code + buildCode)
         });

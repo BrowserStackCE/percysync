@@ -23,7 +23,7 @@ export PERCY_TOKEN=<your_token>
 
 ```bash
 export PERCY_TOKEN=<your_write_token>
-export PERCY_READ_TOKEN=<your_write_token>
+export PERCY_READ_TOKEN=<your_read_token>
 ```
 
 ### Run the test suite

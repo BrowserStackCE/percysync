@@ -2,7 +2,6 @@
 
 The project offers an easy to run a percy test suite in a synchronous manner. 
 
-**_NOTE:_**  You should use a full access Percy token for this library to work. 
 
 ## How to install
 
@@ -11,6 +10,23 @@ npm i @maxmattone/percysync
 ```
 
 ## How to use
+
+### Setup you percy token
+
+#### Using a full access token
+
+```bash
+export PERCY_TOKEN=<your_token>
+```
+
+#### Using read only and write only access tokens
+
+```bash
+export PERCY_TOKEN=<your_write_token>
+export PERCY_READ_TOKEN=<your_write_token>
+```
+
+### Run the test suite
 
 ```bash
 npx @maxmattone/percysync -t <max_percy_redering_time_in_seconds> -- <test_command>

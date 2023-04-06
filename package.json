@@ -1,6 +1,6 @@
 {
   "name": "@maxmattone/percysync",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -15,6 +15,7 @@
     "@percy/cli": "^1.21.0",
     "commander": "^10.0.0",
     "cross-spawn": "^7.0.3",
+    "dotenv": "^16.0.3",
     "sync-request": "^6.1.0",
     "wait-sync": "^1.0.1"
   }

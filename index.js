@@ -3,6 +3,7 @@ const spawn = require('cross-spawn');
 const { program } = require('commander');
 var request = require('sync-request');
 const waitSync = require('wait-sync');
+require('dotenv').config()
 
 program
     .option('-t, --timeout <number>', 'percysync timeout (seconds)')

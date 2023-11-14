@@ -29,11 +29,11 @@ export PERCY_READ_TOKEN=<your_read_token>
 ### Run the test suite
 
 ```bash
-npx @maxmattone/percysync -t <max_percy_redering_time_in_seconds> -- <test_command>
+npx @maxmattone/percysync -- <test_command>
 ```
 
 Example for a mvn project:
 
 ```bash
-npx @maxmattone/percysync -t 50 -- npx percy exex -- mvn test
+npx @maxmattone/percysync -- npx percy exex -- mvn test
 ```

@@ -6,7 +6,7 @@ The project offers an easy to run a percy test suite in a synchronous manner.
 ## How to install
 
 ```bash
-npm i @maxmattone/percysync
+npm i @browserstackce/percysync
 ```
 
 ## How to use
@@ -29,7 +29,7 @@ export PERCY_READ_TOKEN=<your_read_token>
 ### Run the test suite
 
 ```bash
-npx @maxmattone/percysync -- <test_command>
+npx @browserstackce/percysync -- <test_command>
 ```
 
 Example for a mvn project:

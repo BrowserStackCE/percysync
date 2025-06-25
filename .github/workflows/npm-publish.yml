@@ -3,10 +3,6 @@
 
 name: Publish release
 
-permissions:
-  contents: read
-  packages: write
-
 on:
   release:
     types: [released]
